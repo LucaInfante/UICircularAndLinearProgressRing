@@ -160,7 +160,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         super.draw(in: ctx)
         UIGraphicsPushContext(ctx)
         // Draw the rings
-        drawOuterRing(in: ctx)
+        drawOuterRing()
         drawInnerRing(in: ctx)
         // Draw the label
         drawValueLabel()
@@ -212,7 +212,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Draws the outer ring for the view.
      Sets path properties according to how the user has decided to customize the view.
      */
-    private func drawOuterRing(in ctx: CGContext) {
+    private func drawOuterRing() {
         guard outerRingWidth > 0 else { return }
         
         if linear == true
@@ -224,40 +224,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             outerPath.lineWidth = outerRingWidth
             outerRingColor.setStroke()
             outerPath.stroke()
-            
-            // Draw path
-            ctx.setLineWidth(outerRingWidth)
-            ctx.setLineJoin(.round)
-            ctx.setLineCap(outerCapStyle)
-            ctx.setStrokeColor(outerRingColor.cgColor)
-            ctx.addPath(outerPath.cgPath)
-            ctx.drawPath(using: .stroke)
-            
-            if ringStyle == .gradient && gradientColors.count > 1 {
-                // Create gradient and draw it
-                var cgColors: [CGColor] = [CGColor]()
-                for color: UIColor in gradientColors {
-                    cgColors.append(color.cgColor)
-                }
-                
-                guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
-                                                            colors: cgColors as CFArray,
-                                                            locations: gradientColorLocations)
-                    else {
-                        fatalError("\nUnable to create gradient for progress ring.\n" +
-                            "Check values of gradientColors and gradientLocations.\n")
-                }
-                
-                ctx.saveGState()
-                ctx.addPath(outerPath.cgPath)
-                ctx.replacePathWithStrokedPath()
-                ctx.clip()
-                
-                drawGradient(gradient, start: gradientStartPosition,
-                             end: gradientEndPosition, in: ctx)
-                
-                ctx.restoreGState()
-            }
         }
         else
         {
@@ -295,6 +261,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             innerPath.addLine(to: CGPoint(x: linearStart.x + ((linearEnd.x - linearStart.x)/maxValue*value), y: linearEnd.y))
             innerPath.lineCapStyle = innerCapStyle
             innerPath.lineWidth = innerRingWidth
+            innerRingColor.setStroke()
+            innerPath.stroke()
             
             // Draw path
             ctx.setLineWidth(innerRingWidth)
