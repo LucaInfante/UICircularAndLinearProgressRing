@@ -89,6 +89,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
     @NSManaged var ringStyle: UICircularProgressRingStyle
     @NSManaged var showsValueKnob: Bool
+    @NSManaged var knobWhiteBorder: Bool
+    @NSManaged var knobGradient: Bool
     @NSManaged var valueKnobSize: CGFloat
     @NSManaged var valueKnobColor: UIColor
     @NSManaged var valueKnobShadowBlur: CGFloat
@@ -261,8 +263,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             innerPath.addLine(to: CGPoint(x: linearStart.x + ((linearEnd.x - linearStart.x)/maxValue*value), y: linearEnd.y))
             innerPath.lineCapStyle = innerCapStyle
             innerPath.lineWidth = innerRingWidth
-            innerRingColor.setStroke()
-            innerPath.stroke()
             
             // Draw path
             ctx.setLineWidth(innerRingWidth)
@@ -461,6 +461,19 @@ class UICircularProgressRingLayer: CAShapeLayer {
     private func drawValueKnob(in context: CGContext, origin: CGPoint) {
         context.saveGState()
 
+        if knobWhiteBorder == true
+        {
+            let rectExt = CGRect(origin: origin, size: CGSize(width: valueKnobSize+2, height: valueKnobSize+2))
+            let knobPathExt = UIBezierPath(ovalIn: rectExt)
+            
+            context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
+            context.addPath(knobPathExt.cgPath)
+            context.setFillColor(valueKnobColor.cgColor)
+            context.setLineCap(.round)
+            context.setLineWidth(12)
+            context.drawPath(using: .fill)
+        }
+        
         let rect = CGRect(origin: origin, size: CGSize(width: valueKnobSize, height: valueKnobSize))
         let knobPath = UIBezierPath(ovalIn: rect)
 
@@ -471,6 +484,30 @@ class UICircularProgressRingLayer: CAShapeLayer {
         context.setLineWidth(12)
         context.drawPath(using: .fill)
 
+        if knobGradient == true && ringStyle == .gradient && gradientColors.count > 1 {
+            // Create gradient and draw it
+            var cgColors: [CGColor] = [CGColor]()
+            for color: UIColor in gradientColors {
+                cgColors.append(color.cgColor)
+            }
+            
+            guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
+                                                        colors: cgColors as CFArray,
+                                                        locations: gradientColorLocations)
+                else {
+                    fatalError("\nUnable to create gradient for progress ring.\n" +
+                        "Check values of gradientColors and gradientLocations.\n")
+            }
+            
+            context.saveGState()
+            context.addPath(knobPath.cgPath)
+            context.replacePathWithStrokedPath()
+            context.clip()
+            
+            drawGradient(gradient, start: gradientStartPosition,
+                         end: gradientEndPosition, in: context)
+        }
+        
         context.restoreGState()
     }
 
