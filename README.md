@@ -7,13 +7,17 @@
 
 ![Banner](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png)
 
-<h3 align="center">A circular progress bar for iOS written in Swift</h3>
+<h3 align="center">A circular (and linear) progress bar for iOS written in Swift</h3>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>
 </p>
 
 ![Styles](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png)
+
+## Fork
+
+I fork this pods for add linear option and change some params for know element.
 
 ## Features
 
