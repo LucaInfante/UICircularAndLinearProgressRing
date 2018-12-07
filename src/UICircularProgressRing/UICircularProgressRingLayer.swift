@@ -160,7 +160,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         super.draw(in: ctx)
         UIGraphicsPushContext(ctx)
         // Draw the rings
-        drawOuterRing()
+//        drawOuterRing()
         drawInnerRing(in: ctx)
         // Draw the label
         drawValueLabel()
