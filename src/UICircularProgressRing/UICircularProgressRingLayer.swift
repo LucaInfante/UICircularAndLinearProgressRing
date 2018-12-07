@@ -254,6 +254,13 @@ class UICircularProgressRingLayer: CAShapeLayer {
     private func drawInnerRing(in ctx: CGContext) {
         guard innerRingWidth > 0 else { return }
 
+        print(linear)
+        print(linearStart)
+        print(linearEnd)
+        print(innerCapStyle)
+        print(innerRingWidth)
+        print(innerRingColor)
+        
         if linear == true
         {
             let innerPath = UIBezierPath()
