@@ -470,7 +470,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.addPath(knobPathExt.cgPath)
             context.setFillColor(UIColor.white.cgColor)
             context.setLineCap(.round)
-            context.setLineWidth(2)
+            context.setLineWidth(1)
             context.drawPath(using: .fill)
 
             context.restoreGState()
@@ -487,8 +487,17 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.setFillColor(valueKnobColor.cgColor)
         }
         context.setLineCap(.round)
-        context.setLineWidth(12)
-        context.drawPath(using: .fill)
+        if knobWhiteBorder == false
+        {
+            context.setLineWidth(12)
+            context.drawPath(using: .fill)
+        }
+        else
+        {
+            context.drawPath(using: .fill)
+            context.setLineWidth(2)
+            context.drawPath(using: .stroke)
+        }
 
         if knobGradient == true && gradientColors.count > 1 {
 
