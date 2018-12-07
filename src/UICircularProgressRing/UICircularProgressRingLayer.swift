@@ -484,7 +484,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         context.setLineWidth(12)
         context.drawPath(using: .fill)
 
-        if knobGradient == true && ringStyle == .gradient && gradientColors.count > 1 {
+        if knobGradient == true && gradientColors.count > 1 {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
             for color: UIColor in gradientColors {
