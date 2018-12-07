@@ -314,6 +314,36 @@ fileprivate extension CALayer {
     }
     
     /**
+     Whether or not the value knob is gradient
+     
+     ## Important ##
+     Default = false
+     
+     ## Author
+     Luca Infante
+     */
+    @IBInspectable open var knobGradient: Bool = false {
+        didSet {
+            ringLayer.knobGradient = knobGradient
+        }
+    }
+    
+    /**
+     Whether or not the value knob is white border
+     
+     ## Important ##
+     Default = false
+     
+     ## Author
+     Luca Infante
+     */
+    @IBInspectable open var knobWhiteBorder: Bool = false {
+        didSet {
+            ringLayer.knobWhiteBorder = knobWhiteBorder
+        }
+    }
+    
+    /**
      Whether or not the value knob is shown
      
      ## Important ##
@@ -1021,6 +1051,8 @@ fileprivate extension CALayer {
         
         ringLayer.ringStyle = ringStyle
         ringLayer.showsValueKnob = showsValueKnob
+        ringLayer.knobWhiteBorder = knobWhiteBorder
+        ringLayer.knobGradient = knobGradient
         ringLayer.valueKnobSize = valueKnobSize
         ringLayer.valueKnobColor = valueKnobColor
         ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
