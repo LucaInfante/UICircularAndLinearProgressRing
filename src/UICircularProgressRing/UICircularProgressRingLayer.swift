@@ -158,10 +158,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
-        let ctx = UIGraphicsGetCurrentContext()!
-//        UIGraphicsPushContext(ctx)
+        UIGraphicsPushContext(ctx)
         // Draw the rings
-        drawOuterRing()
+        drawOuterRing(in: ctx)
         drawInnerRing(in: ctx)
         // Draw the label
         drawValueLabel()
@@ -169,7 +168,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if let updatedValue = value(forKey: "value") as? CGFloat {
             valueDelegate?.didUpdateValue(newValue: updatedValue)
         }
-//        UIGraphicsPopContext()
+        UIGraphicsPopContext()
 
     }
 
@@ -213,7 +212,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Draws the outer ring for the view.
      Sets path properties according to how the user has decided to customize the view.
      */
-    private func drawOuterRing() {
+    private func drawOuterRing(in ctx: CGContext) {
         guard outerRingWidth > 0 else { return }
         
         if linear == true
@@ -225,6 +224,40 @@ class UICircularProgressRingLayer: CAShapeLayer {
             outerPath.lineWidth = outerRingWidth
             outerRingColor.setStroke()
             outerPath.stroke()
+            
+            // Draw path
+            ctx.setLineWidth(outerRingWidth)
+            ctx.setLineJoin(.round)
+            ctx.setLineCap(outerCapStyle)
+            ctx.setStrokeColor(outerRingColor.cgColor)
+            ctx.addPath(outerPath.cgPath)
+            ctx.drawPath(using: .stroke)
+            
+            if ringStyle == .gradient && gradientColors.count > 1 {
+                // Create gradient and draw it
+                var cgColors: [CGColor] = [CGColor]()
+                for color: UIColor in gradientColors {
+                    cgColors.append(color.cgColor)
+                }
+                
+                guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
+                                                            colors: cgColors as CFArray,
+                                                            locations: gradientColorLocations)
+                    else {
+                        fatalError("\nUnable to create gradient for progress ring.\n" +
+                            "Check values of gradientColors and gradientLocations.\n")
+                }
+                
+                ctx.saveGState()
+                ctx.addPath(outerPath.cgPath)
+                ctx.replacePathWithStrokedPath()
+                ctx.clip()
+                
+                drawGradient(gradient, start: gradientStartPosition,
+                             end: gradientEndPosition, in: ctx)
+                
+                ctx.restoreGState()
+            }
         }
         else
         {
