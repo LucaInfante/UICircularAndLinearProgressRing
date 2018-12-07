@@ -257,6 +257,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if linear == true
         {
             let innerPath = UIBezierPath()
+            innerPath.move(to: linearStart)
+            innerPath.addLine(to: linearEnd)
             
             // Draw path
             ctx.setLineWidth(innerRingWidth)
@@ -264,7 +266,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.setLineCap(innerCapStyle)
             ctx.setStrokeColor(innerRingColor.cgColor)
             ctx.move(to: linearStart)
-            ctx.addLine(to: linearEnd)
+            ctx.addPath(innerPath.cgPath)
             ctx.drawPath(using: .stroke)
             
             if ringStyle == .gradient && gradientColors.count > 1 {
