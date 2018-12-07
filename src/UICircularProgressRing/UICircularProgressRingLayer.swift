@@ -158,7 +158,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
-        UIGraphicsPushContext(ctx)
+        let ctx = UIGraphicsGetCurrentContext()!
+//        UIGraphicsPushContext(ctx)
         // Draw the rings
         drawOuterRing()
         drawInnerRing(in: ctx)
@@ -168,7 +169,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if let updatedValue = value(forKey: "value") as? CGFloat {
             valueDelegate?.didUpdateValue(newValue: updatedValue)
         }
-        UIGraphicsPopContext()
+//        UIGraphicsPopContext()
 
     }
 
@@ -254,13 +255,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
     private func drawInnerRing(in ctx: CGContext) {
         guard innerRingWidth > 0 else { return }
 
-        print(linear)
-        print(linearStart)
-        print(linearEnd)
-        print(innerCapStyle)
-        print(innerRingWidth)
-        print(innerRingColor)
-        
         if linear == true
         {
             let innerPath = UIBezierPath()
