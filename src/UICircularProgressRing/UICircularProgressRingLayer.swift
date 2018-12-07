@@ -472,6 +472,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.setLineCap(.round)
             context.setLineWidth(2)
             context.drawPath(using: .fill)
+            
+            context.restoreGState()
+            context.saveGState()
         }
         
         let rect = CGRect(origin: origin, size: CGSize(width: valueKnobSize, height: valueKnobSize))
