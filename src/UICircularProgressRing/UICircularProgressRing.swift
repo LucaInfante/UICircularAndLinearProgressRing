@@ -86,6 +86,24 @@ fileprivate extension CALayer {
     // MARK: Circle Properties
 
     /**
+     When this property is true draw a line and not circle. 
+     
+     ## Important ##
+     Default = false
+         
+     ## Author
+     Luca Infante
+     
+     */
+    @IBInspectable open var linear: Bool = false {
+        didSet {
+            ringLayer.linear = linear
+        }
+    }
+    
+    // MARK: Circle Properties
+
+    /**
      Whether or not the progress ring should be a full circle.
      
      What this means is that the outer ring will always go from 0 - 360 degrees and
@@ -960,6 +978,7 @@ fileprivate extension CALayer {
         layer.masksToBounds = false
 
         ringLayer.fullCircle = fullCircle
+        ringLayer.linear = linear
         ringLayer.isClockwise = isClockwise
 
         ringLayer.value = value
