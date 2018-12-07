@@ -256,6 +256,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         if linear == true
         {
+            let innerEndAngle = calculateInnerEndAngle()
+            let radiusIn = calculateInnerRadius()
+            
             let innerPath = UIBezierPath()
             innerPath.move(to: linearStart)
             innerPath.addLine(to: linearEnd)
