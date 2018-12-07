@@ -259,13 +259,14 @@ class UICircularProgressRingLayer: CAShapeLayer {
             let innerPath = UIBezierPath()
             innerPath.move(to: linearStart)
             innerPath.addLine(to: linearEnd)
+            innerPath.lineCapStyle = innerCapStyle
+            innerPath.lineWidth = innerRingWidth
             
             // Draw path
             ctx.setLineWidth(innerRingWidth)
             ctx.setLineJoin(.round)
             ctx.setLineCap(innerCapStyle)
             ctx.setStrokeColor(innerRingColor.cgColor)
-            ctx.move(to: linearStart)
             ctx.addPath(innerPath.cgPath)
             ctx.drawPath(using: .stroke)
             
