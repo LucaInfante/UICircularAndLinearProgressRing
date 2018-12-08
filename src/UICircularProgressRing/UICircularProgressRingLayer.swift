@@ -498,10 +498,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             let startPoint = CGPoint.zero
-            let endPoint = CGPoint(x: 0, y: bounds.height)
+            let endPoint = CGPoint(x: rect.midX, y: rect.minY)
             context.drawLinearGradient(gradient,
-                                       start: startPoint,
-                                       end: endPoint,
+                                       start: gradientStartPosition,
+                                       end: gradientEndPosition,
                                        options: [])
         }
         
