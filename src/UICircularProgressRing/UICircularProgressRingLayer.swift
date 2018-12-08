@@ -498,7 +498,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-            context.setLineWidth(2)
+            context.setLineWidth(3)
             context.addPath(knobPath.cgPath)
             context.clip()
             
