@@ -468,20 +468,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
         context.addPath(knobPath.cgPath)
         context.setLineCap(.round)
         
-        if knobWhiteBorder == false
-        {
-            context.setFillColor(valueKnobColor.cgColor)
-            context.setLineWidth(12)
-            context.drawPath(using: .fill)
-        }
-        else
-        {
-            context.setFillColor(valueKnobColor.cgColor)
-            context.setLineWidth(2)
-            context.setStrokeColor(UIColor.white.cgColor)
-            context.drawPath(using: .stroke)
-        }
-        
         if knobGradient == true && gradientColors.count > 1 {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
@@ -505,6 +491,21 @@ class UICircularProgressRingLayer: CAShapeLayer {
             drawGradient(gradient, start: gradientStartPosition,
                          end: gradientEndPosition, in: context)
         }
+        
+        if knobWhiteBorder == false
+        {
+            context.setFillColor(valueKnobColor.cgColor)
+            context.setLineWidth(12)
+            context.drawPath(using: .fill)
+        }
+        else
+        {
+            context.setFillColor(valueKnobColor.cgColor)
+            context.setLineWidth(2)
+            context.setStrokeColor(UIColor.white.cgColor)
+            context.drawPath(using: .stroke)
+        }
+        
         
         context.restoreGState()
     }
