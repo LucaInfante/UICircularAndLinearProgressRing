@@ -497,11 +497,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
                         "Check values of gradientColors and gradientLocations.\n")
             }
             
-            let startPoint = CGPoint.zero
-            let endPoint = CGPoint(x: rect.midX, y: rect.minY)
             context.drawLinearGradient(gradient,
-                                       start: gradientStartPosition,
-                                       end: gradientEndPosition,
+                                       start: gradientStartPosition.pointForPosition(in: bounds),
+                                       end: gradientEndPosition.pointForPosition(in: bounds),
                                        options: [])
         }
         
