@@ -498,7 +498,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-            context.replacePathWithStrokedPath()
+            context.setLineWidth(2)
+            context.addPath(knobPath.cgPath)
             context.clip()
             
             context.drawLinearGradient(gradient,
