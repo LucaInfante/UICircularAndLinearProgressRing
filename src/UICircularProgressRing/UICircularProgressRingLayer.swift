@@ -480,7 +480,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.setLineWidth(2)
             context.setStrokeColor(UIColor.white.cgColor)
             context.drawPath(using: .stroke)
-        }
+        } 
         
         if knobGradient == true && gradientColors.count > 1 {
             // Create gradient and draw it
@@ -496,6 +496,11 @@ class UICircularProgressRingLayer: CAShapeLayer {
                     fatalError("\nUnable to create gradient for progress ring.\n" +
                         "Check values of gradientColors and gradientLocations.\n")
             }
+            
+            context.saveGState()
+            context.addPath(knobPath.cgPath)
+            context.replacePathWithStrokedPath()
+            context.clip()
             
             context.drawLinearGradient(gradient,
                                        start: gradientStartPosition.pointForPosition(in: bounds),
