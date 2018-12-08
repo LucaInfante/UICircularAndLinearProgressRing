@@ -467,6 +467,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
         context.addPath(knobPath.cgPath)
         context.setLineCap(.round)
+        
         if knobWhiteBorder == false
         {
             context.setFillColor(valueKnobColor.cgColor)
@@ -476,7 +477,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
         else
         {
             context.setFillColor(valueKnobColor.cgColor)
-            context.drawPath(using: .fill)
             context.setLineWidth(2)
             context.setStrokeColor(UIColor.white.cgColor)
             context.drawPath(using: .stroke)
