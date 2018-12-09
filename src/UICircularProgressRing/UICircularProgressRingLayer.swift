@@ -491,14 +491,14 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: [0.0, 1.0])
+                                                        locations: gradientColorLocations)
                 else {
                     fatalError("\nUnable to create gradient for progress ring.\n" +
                         "Check values of gradientColors and gradientLocations.\n")
             }
             
             context.saveGState()
-            context.setLineWidth(2)
+            context.setLineWidth(4)
             context.addPath(knobPath.cgPath)
             context.clip()
  
