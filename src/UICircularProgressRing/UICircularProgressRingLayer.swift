@@ -476,22 +476,22 @@ class UICircularProgressRingLayer: CAShapeLayer {
         
         let rect = CGRect(origin: origin, size: CGSize(width: valueKnobSize, height: valueKnobSize))
         let knobPath = UIBezierPath(ovalIn: rect)
-        
-        context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
+        context.saveGState()
         context.addPath(knobPath.cgPath)
+        context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
         context.setLineCap(.round)
         
         if knobWhiteBorder == false
         {
-            context.setFillColor(valueKnobColor.cgColor)
             context.setLineWidth(12)
+            context.setFillColor(valueKnobColor.cgColor)
             context.drawPath(using: .fill)
         }
         else
         {
-            context.setFillColor(valueKnobColor.cgColor)
             context.setLineWidth(4)
             context.setStrokeColor(UIColor.white.cgColor)
+            context.setFillColor(valueKnobColor.cgColor)
             context.drawPath(using: .stroke)
         }
 
@@ -510,8 +510,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
                         "Check values of gradientColors and gradientLocations.\n")
             }
             
-            context.saveGState()
-            context.addPath(knobPath.cgPath)
             context.clip()
  
             let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
