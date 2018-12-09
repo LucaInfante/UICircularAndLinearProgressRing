@@ -477,7 +477,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         else
         {
             context.setFillColor(valueKnobColor.cgColor)
-            context.setLineWidth(4)
+            context.setLineWidth(2)
             context.setStrokeColor(UIColor.white.cgColor)
             context.drawPath(using: .stroke)
         }
@@ -498,7 +498,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-            context.setLineWidth(4)
+            context.setLineWidth(2)
             context.addPath(knobPath.cgPath)
             context.replacePathWithStrokedPath()
             context.clip()
