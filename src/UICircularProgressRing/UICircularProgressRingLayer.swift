@@ -270,8 +270,11 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.setLineWidth(innerRingWidth)
             ctx.setLineJoin(.round)
             ctx.setLineCap(innerCapStyle)
-//            ctx.setStrokeColor(innerRingColor.cgColor)
-//            ctx.drawPath(using: .stroke)
+            if ringStyle != .gradient || gradientColors.count < 1
+            {
+                ctx.setStrokeColor(innerRingColor.cgColor)
+                ctx.drawPath(using: .stroke)
+            }
             
             if ringStyle == .gradient && gradientColors.count > 1 {
                 // Create gradient and draw it
@@ -323,14 +326,18 @@ class UICircularProgressRingLayer: CAShapeLayer {
                                                        startAngle: startAngle.toRads,
                                                        endAngle: innerEndAngle.toRads,
                                                        clockwise: isClockwise)
-            
+            ctx.saveGState()
             // Draw path
+            ctx.addPath(innerPath.cgPath)
             ctx.setLineWidth(innerRingWidth)
             ctx.setLineJoin(.round)
             ctx.setLineCap(innerCapStyle)
-            ctx.setStrokeColor(innerRingColor.cgColor)
-            ctx.addPath(innerPath.cgPath)
-            ctx.drawPath(using: .stroke)
+            if ringStyle != .gradient || gradientColors.count < 1
+            {
+                ctx.setStrokeColor(innerRingColor.cgColor)
+//              ctx.addPath(innerPath.cgPath)
+                ctx.drawPath(using: .stroke)
+            }
             
             if ringStyle == .gradient && gradientColors.count > 1 {
                 // Create gradient and draw it
@@ -347,8 +354,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
                             "Check values of gradientColors and gradientLocations.\n")
                 }
                 
-                ctx.saveGState()
-                ctx.addPath(innerPath.cgPath)
+//                ctx.saveGState()
+//                ctx.addPath(innerPath.cgPath)
                 ctx.replacePathWithStrokedPath()
                 ctx.clip()
                 
