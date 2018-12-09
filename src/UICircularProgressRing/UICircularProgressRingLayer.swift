@@ -268,7 +268,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.setLineWidth(innerRingWidth)
             ctx.setLineJoin(.round)
             ctx.setLineCap(innerCapStyle)
-//            ctx.setStrokeColor(innerRingColor.cgColor)
+            ctx.setStrokeColor(innerRingColor.cgColor)
             ctx.addPath(innerPath.cgPath)
             ctx.drawPath(using: .stroke)
             
