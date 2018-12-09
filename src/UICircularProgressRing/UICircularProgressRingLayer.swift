@@ -270,7 +270,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.setLineCap(innerCapStyle)
             ctx.setStrokeColor(innerRingColor.cgColor)
             ctx.addPath(innerPath.cgPath)
-//            ctx.drawPath(using: .stroke)
+            ctx.drawPath(using: .stroke)
             
             if ringStyle == .gradient && gradientColors.count > 1 {
                 // Create gradient and draw it
@@ -504,6 +504,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             context.saveGState()
             context.addPath(knobPath.cgPath)
+            context.replacePathWithStrokedPath()
             context.clip()
  
             let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
