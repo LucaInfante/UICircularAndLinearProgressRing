@@ -337,6 +337,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
             {
                 ctx.setStrokeColor(innerRingColor.cgColor)
                 ctx.drawPath(using: .stroke)
+                ctx.replacePathWithStrokedPath()
+                ctx.clip()
+                ctx.restoreGState()
             }
             
             if ringStyle == .gradient && gradientColors.count > 1 {
