@@ -293,8 +293,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 ctx.clip()
                 
                 ctx.drawLinearGradient(gradient,
-                                           start: linearStart.pointForPosition(in: bounds),
-                                           end: linearEnd.pointForPosition(in: bounds),
+                                           start: linearStart,
+                                           end: linearEnd,
                                            options: .drawsBeforeStartLocation)
                 
                 ctx.restoreGState()
