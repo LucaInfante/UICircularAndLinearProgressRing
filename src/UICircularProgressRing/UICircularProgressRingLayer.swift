@@ -288,9 +288,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 }
                 
                 ctx.saveGState()
-                ctx.addPath(innerPath.cgPath)
-                ctx.replacePathWithStrokedPath()
-                ctx.clip()
+//                ctx.addPath(innerPath.cgPath)
+//                ctx.replacePathWithStrokedPath()
+//                ctx.clip()
+                innerPath.addClip()
                 
                 let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
@@ -347,9 +348,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 }
                 
                 ctx.saveGState()
-                ctx.addPath(innerPath.cgPath)
-                ctx.replacePathWithStrokedPath()
-                ctx.clip()
+//                ctx.addPath(innerPath.cgPath)
+//                ctx.replacePathWithStrokedPath()
+//                ctx.clip()
+                innerPath.addClip()
                 
                 drawGradient(gradient, start: gradientStartPosition,
                              end: gradientEndPosition, in: ctx)
@@ -503,9 +505,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-            context.setLineWidth(4)
-            context.addPath(knobPath.cgPath)
-            context.clip()
+//            context.setLineWidth(4)
+//            context.addPath(knobPath.cgPath)
+//            context.clip()
+            knobPath.addClip()
  
             let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
             let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
