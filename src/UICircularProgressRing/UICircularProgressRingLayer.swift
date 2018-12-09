@@ -263,14 +263,15 @@ class UICircularProgressRingLayer: CAShapeLayer {
             innerPath.addLine(to: CGPoint(x: linearStart.x + ((linearEnd.x - linearStart.x)/maxValue*value), y: linearEnd.y))
             innerPath.lineCapStyle = innerCapStyle
             innerPath.lineWidth = innerRingWidth
-            
+            ctx.saveGState()
+
             // Draw path
+            ctx.addPath(innerPath.cgPath)
             ctx.setLineWidth(innerRingWidth)
             ctx.setLineJoin(.round)
             ctx.setLineCap(innerCapStyle)
             ctx.setStrokeColor(innerRingColor.cgColor)
-            ctx.addPath(innerPath.cgPath)
-            ctx.drawPath(using: .stroke)
+//            ctx.drawPath(using: .stroke)
             
             if ringStyle == .gradient && gradientColors.count > 1 {
                 // Create gradient and draw it
