@@ -273,6 +273,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.drawPath(using: .stroke)
             
             if ringStyle == .gradient && gradientColors.count > 1 {
+                ctx.restoreGState()
                 // Create gradient and draw it
                 var cgColors: [CGColor] = [CGColor]()
                 for color: UIColor in gradientColors {
@@ -348,10 +349,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 }
                 
                 ctx.saveGState()
-//                ctx.addPath(innerPath.cgPath)
-//                ctx.replacePathWithStrokedPath()
-//                ctx.clip()
-                innerPath.addClip()
+                ctx.addPath(innerPath.cgPath)
+                ctx.replacePathWithStrokedPath()
+                ctx.clip()
                 
                 drawGradient(gradient, start: gradientStartPosition,
                              end: gradientEndPosition, in: ctx)
