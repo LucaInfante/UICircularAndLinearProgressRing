@@ -502,7 +502,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.addPath(knobPath.cgPath)
             context.clip()
  
-            let startPoint = CGPoint.zero
+            let startPoint = origin
             let endPoint = CGPoint(x: bounds.width/2, y: 0)
             
             context.drawLinearGradient(gradient,
