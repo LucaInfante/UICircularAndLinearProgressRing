@@ -471,8 +471,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let knobPath = UIBezierPath(ovalIn: rect)
         
         context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
-//        context.addPath(knobPath.cgPath)
-//        context.setLineCap(.round)
+        context.addPath(knobPath.cgPath)
+        context.setLineCap(.round)
         
         if knobWhiteBorder == false
         {
