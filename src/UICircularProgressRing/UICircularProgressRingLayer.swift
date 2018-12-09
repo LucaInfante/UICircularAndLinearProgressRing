@@ -288,15 +288,17 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 }
                 
                 ctx.saveGState()
-                ctx.setLineCap(innerCapStyle)
                 ctx.addPath(innerPath.cgPath)
                 ctx.replacePathWithStrokedPath()
                 ctx.clip()
                 
+                let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
+                let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
+                
                 ctx.drawLinearGradient(gradient,
-                                           start: linearStart,
-                                           end: linearEnd,
-                                           options: [])
+                                           start: startPoint,
+                                           end: endPoint,
+                                           options: .drawsBeforeStartLocation)
                 
                 ctx.restoreGState()
             }
