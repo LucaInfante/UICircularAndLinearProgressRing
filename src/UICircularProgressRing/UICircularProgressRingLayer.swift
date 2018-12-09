@@ -337,9 +337,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             {
                 ctx.setStrokeColor(innerRingColor.cgColor)
                 ctx.drawPath(using: .stroke)
-                ctx.replacePathWithStrokedPath()
-                ctx.clip()
-                ctx.restoreGState()
             }
             
             if ringStyle == .gradient && gradientColors.count > 1 {
@@ -493,7 +490,15 @@ class UICircularProgressRingLayer: CAShapeLayer {
         else
         {
             context.setFillColor(valueKnobColor.cgColor)
-            context.setLineWidth(4)
+            if knobGradient == true
+            {
+                context.setLineWidth(4)
+            }
+            else
+            {
+                context.drawPath(using: .fill)
+                context.setLineWidth(2)
+            }
             context.setStrokeColor(UIColor.white.cgColor)
             context.drawPath(using: .stroke)
         }
