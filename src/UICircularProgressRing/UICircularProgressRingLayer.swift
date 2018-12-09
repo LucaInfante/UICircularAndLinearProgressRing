@@ -498,13 +498,16 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-            context.setLineWidth(4)
+/*            context.setLineWidth(4)
             context.addPath(knobPath.cgPath)
             context.clip()
+  */
+            let startPoint = CGPoint.zero
+            let endPoint = CGPoint(x: 0, y: bounds.height)
             
             context.drawLinearGradient(gradient,
-                                       start: origin,
-                                       end: gradientEndPosition.pointForPosition(in: bounds),
+                                       start: startPoint,
+                                       end: endPoint,
                                        options: [])
         }
         
