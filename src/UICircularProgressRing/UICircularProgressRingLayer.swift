@@ -293,8 +293,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 ctx.replacePathWithStrokedPath()
                 ctx.clip()
                 
-                let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
-                let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
+                let startPoint = CGPoint(x: frame.minX, y: frame.midY)
+                let endPoint = CGPoint(x: frame.maxX, y: frame.midY)
                 
                 ctx.drawLinearGradient(gradient,
                                            start: startPoint,
