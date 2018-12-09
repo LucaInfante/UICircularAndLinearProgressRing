@@ -503,8 +503,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.clip()
             
             context.drawLinearGradient(gradient,
-                                       start: gradientStartPosition.pointForPosition(in: bounds),
-                                       end: gradientEndPosition.pointForPosition(in: bounds),
+                                       start: CGPoint(x: 0.0, y: 0.5),
+                                       end: CGPoint(x: 1.0, y: 0.5),
                                        options: [])
         }
         
