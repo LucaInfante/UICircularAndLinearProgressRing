@@ -482,6 +482,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.drawPath(using: .stroke)
         }
 
+        context.restoreGState()
+
         if knobGradient == true && gradientColors.count > 1 {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
