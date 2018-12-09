@@ -288,10 +288,12 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 }
                 
                 ctx.saveGState()
-//                ctx.addPath(innerPath.cgPath)
-//                ctx.replacePathWithStrokedPath()
-//                ctx.clip()
-                innerPath.addClip()
+                ctx.setLineWidth(innerRingWidth)
+                ctx.setLineJoin(.round)
+                ctx.setLineCap(innerCapStyle)
+                ctx.addPath(innerPath.cgPath)
+                ctx.replacePathWithStrokedPath()
+                ctx.clip()
                 
                 let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
