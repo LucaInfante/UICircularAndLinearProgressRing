@@ -273,7 +273,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.drawPath(using: .stroke)
             
             if ringStyle == .gradient && gradientColors.count > 1 {
-                ctx.restoreGState()
                 // Create gradient and draw it
                 var cgColors: [CGColor] = [CGColor]()
                 for color: UIColor in gradientColors {
@@ -472,8 +471,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let knobPath = UIBezierPath(ovalIn: rect)
         
         context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
-        context.addPath(knobPath.cgPath)
-        context.setLineCap(.round)
+//        context.addPath(knobPath.cgPath)
+//        context.setLineCap(.round)
         
         if knobWhiteBorder == false
         {
