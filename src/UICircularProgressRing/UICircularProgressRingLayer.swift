@@ -491,7 +491,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
         {
             context.setLineWidth(4)
             context.setFillColor(valueKnobColor.cgColor)
-            context.drawPath(using: .fill)
             context.setStrokeColor(UIColor.white.cgColor)
             context.drawPath(using: .stroke)
         }
