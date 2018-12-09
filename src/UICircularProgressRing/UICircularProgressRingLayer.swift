@@ -288,8 +288,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
                             "Check values of gradientColors and gradientLocations.\n")
                 }
                 
-                ctx.saveGState()
-                ctx.addPath(innerPath.cgPath)
+//                ctx.saveGState()
+//                ctx.addPath(innerPath.cgPath)
                 ctx.replacePathWithStrokedPath()
                 ctx.clip()
                 
