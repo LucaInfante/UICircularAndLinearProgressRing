@@ -491,7 +491,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: gradientColorLocations)
+                                                        locations: [0.0, 1.0])
                 else {
                     fatalError("\nUnable to create gradient for progress ring.\n" +
                         "Check values of gradientColors and gradientLocations.\n")
@@ -503,8 +503,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             context.replacePathWithStrokedPath()
             context.clip()
  
-            let startPoint = CGPoint(x: 0.0, y: 0.5)
-            let endPoint = CGPoint(x: 1.0, y: 0.5)
+            let startPoint = CGPoint.zero
+            let endPoint = CGPoint(x: 0, y: bounds.height)
             
             context.drawLinearGradient(gradient,
                                        start: startPoint,
