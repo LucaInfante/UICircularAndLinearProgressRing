@@ -504,10 +504,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             }
             
             context.saveGState()
-//            context.setLineWidth(4)
-//            context.addPath(knobPath.cgPath)
-//            context.clip()
-            knobPath.addClip()
+            context.addPath(knobPath.cgPath)
+            context.clip()
  
             let startPoint = CGPoint(x: bounds.minX, y: bounds.midY)
             let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
