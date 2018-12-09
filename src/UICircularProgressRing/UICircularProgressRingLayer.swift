@@ -504,7 +504,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: gradientColorLocations)
+                                                        locations: [1.0, 0.0])
                 else {
                     fatalError("\nUnable to create gradient for progress ring.\n" +
                         "Check values of gradientColors and gradientLocations.\n")
