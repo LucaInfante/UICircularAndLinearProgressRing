@@ -1,4 +1,4 @@
-# Forked to try out small changes to the layer and try a linear-only version.
+# Forked to try out small changes to the layer and try a linear-only version
 
 <p align="center">
 	<img src="https://img.shields.io/github/license/luispadron/UICircularProgressRing.svg">
