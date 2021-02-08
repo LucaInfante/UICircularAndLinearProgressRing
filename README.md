@@ -1,3 +1,5 @@
+# Forked for personal interventions and not "worthy" of pull request or original git was abandoned.
+
 <p align="center">
 	<img src="https://img.shields.io/github/license/luispadron/UICircularProgressRing.svg">
 	<img src="https://img.shields.io/cocoapods/dt/UICircularProgressRing.svg">
